@@ -1,4 +1,5 @@
 using Xunit;
+using Assert = Test.TestHelpers.AssertExtensions;
 
 namespace Test.CsvTableTests
 {

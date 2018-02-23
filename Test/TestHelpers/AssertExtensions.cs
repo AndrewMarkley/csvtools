@@ -1,10 +1,12 @@
-﻿namespace Xunit
+﻿using Xunit;
+
+namespace Test.TestHelpers
 {
-    public partial class Assert
+    public class AssertExtensions
     {
         public static void NotYetImplemented()
         {
-            False(true, "Test Not Implemented Yet");
+            Assert.False(true, "Test Not Implemented Yet");
         }
     }
 }
