@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,6 +56,10 @@ namespace CsvTools
 
         public CsvHeader GetHeader(int index)
         {
+            if (!_headers.Any() || _headers.Count < index) {
+                throw new IndexOutOfRangeException();
+            }
+
             return _headers[index];
         }
 
@@ -78,9 +83,30 @@ namespace CsvTools
             _headers.Add(header);
         }
 
-        internal void AddRow(string[] row)
+        public void AddHeader(string header)
+        {
+            if (header == null) {
+                throw new ArgumentNullException();
+            }
+
+            _headers.Add(new CsvHeader(_headers.Count, header));
+        }
+
+        public void AddHeaders(List<string> headers)
+        {
+            for (int i = 0; i < headers.Count; ++i) {
+                _headers.Add(new CsvHeader(_headers.Count + i, headers[i]));
+            }
+        }
+
+        public void AddRow(string[] row)
         {
             _rows.Add(new CsvRow(row, this));
+        }
+
+        public void AddRow(List<string> row)
+        {
+            AddRow(row.ToArray());
         }
     }
 }
