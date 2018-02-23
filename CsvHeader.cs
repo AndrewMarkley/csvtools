@@ -10,5 +10,9 @@
             Index = index;
             Name = name;
         }
+        public string CsvSafeToString()
+        {
+            return $"\"{Name}\"";
+        }
     }
 }

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace CsvTools
 {
@@ -31,6 +30,22 @@ namespace CsvTools
             {
                 return _rows.Count;
             }
+        }
+
+        public byte[] ExportTable(Encoding encoding)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string headersAsRow = string.Join(",", _headers.Select(t => t.CsvSafeToString()));
+            sb.AppendLine(headersAsRow);
+
+            foreach (var row in _rows) {
+                sb.AppendLine(row.CsvSafeToString());
+            }
+
+            byte[] result = encoding.GetBytes(sb.ToString());
+
+            return result;
         }
 
         public bool HasColumn(string name)

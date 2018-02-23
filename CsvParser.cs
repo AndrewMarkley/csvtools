@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -27,7 +26,7 @@ namespace CsvTools
 
             ReadHeaders(normalizeHeaderNames);
 
-            for (;;) {
+            for (; ; ) {
                 row = GetLineValues();
 
                 if (row == null) {

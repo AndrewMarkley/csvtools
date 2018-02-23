@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CsvTools
 {
@@ -27,6 +28,11 @@ namespace CsvTools
             {
                 return GetColumn(name);
             }
+        }
+
+        public string CsvSafeToString()
+        {
+            return string.Join(",", _cells.Select(t => $"\"{t}\""));
         }
 
         private ICsvColumn GetColumn(int index)
