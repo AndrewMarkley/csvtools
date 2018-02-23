@@ -1,0 +1,109 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3757FE7-BFA8-459C-B574-72DE17048614}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ClassLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>CsvTools</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\FETCH_HEAD" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\mattschwartz\master" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\objects\14\955ebd4c5162da9f97dfc817fab46a443a6dfd" />
+    <None Include=".git\objects\16\c0bf55cfda60e0b17276f68719f555ce04daf1" />
+    <None Include=".git\objects\1b\0a5f6288d0e30149fb8ca1bbf06267ebfa94ba" />
+    <None Include=".git\objects\2c\32958e15ca6f7d7195abb81ac2d51adb901027" />
+    <None Include=".git\objects\2d\71ec0a0a01897a833775b60bc2fa7472e47db1" />
+    <None Include=".git\objects\34\24c797e6cc962b7666f0bf92daaa613b1ec127" />
+    <None Include=".git\objects\37\aa6ba1fdd90f33d57d14b2d5a9e60b1abb5972" />
+    <None Include=".git\objects\61\7e0dab716bbaca1b77416495d88362b0582bdc" />
+    <None Include=".git\objects\63\d032e47f21966a309b9f831d3768bcac766073" />
+    <None Include=".git\objects\72\3828313e3ce43770fa69f198c90a57085c583a" />
+    <None Include=".git\objects\7b\77952e26d7e755f95ed317c03941dc3703bcdd" />
+    <None Include=".git\objects\8e\ed934a9068f011d0378fbdb77fc26264314059" />
+    <None Include=".git\objects\9c\e066b992f608bc98febfdacb0eadc61db62938" />
+    <None Include=".git\objects\9d\5aac64e37ea0003f4acd44483900d1ec271b0c" />
+    <None Include=".git\objects\9f\363f6b548b87fffd01b4c0fca3565448149d95" />
+    <None Include=".git\objects\a0\1d57bbe999c0709a5dc958c0139ce5a6850a18" />
+    <None Include=".git\objects\a3\e09ea71f495355043a66776012b8f8d03780d9" />
+    <None Include=".git\objects\b1\a80edd27acebf4bfa6564167996c17d6fefe1f" />
+    <None Include=".git\objects\bf\519b6ef786d649910fd324c86189ef21c3297c" />
+    <None Include=".git\objects\c2\e94f6bd2fb3f0a4d1b4b7fe76f2bb8d7e61d58" />
+    <None Include=".git\objects\c7\89f02a7f9d16ba86c56c57f610c9ee9413de81" />
+    <None Include=".git\objects\cf\7b721275e221efc663c72bbd306748e4849e69" />
+    <None Include=".git\objects\ef\10f2983250639e50f80d9eb17304ca6c7518f2" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\mattschwartz\master" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+    <None Include="project.json" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CsvColumn.cs" />
+    <Compile Include="CsvHeader.cs" />
+    <Compile Include="CsvParser.cs" />
+    <Compile Include="CsvRow.cs" />
+    <Compile Include="CsvTable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\tags\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
