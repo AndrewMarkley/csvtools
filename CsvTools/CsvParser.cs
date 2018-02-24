@@ -26,7 +26,7 @@ namespace CsvTools
 
             ReadHeaders(normalizeHeaderNames);
 
-            for (; ; ) {
+            while(true) {
                 row = GetLineValues();
 
                 if (row == null) {
