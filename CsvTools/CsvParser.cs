@@ -8,23 +8,40 @@ namespace CsvTools
     {
         private CsvTable _table;
         private StreamReader _reader;
+        private readonly CsvParserOptions _options;
 
-        private CsvParser()
+        private CsvParser(CsvParserOptions options)
         {
+            _options = options;
         }
 
-        public static CsvTable ParseTable(byte[] data, bool normalizeHeaderNames = true)
+        public static CsvTable ParseTable(StreamReader stream)
         {
-            return new CsvParser().InternalParse(data, normalizeHeaderNames);
+            return new CsvParser(new CsvParserOptions()).InternalParse(stream);
         }
 
-        private CsvTable InternalParse(byte[] data, bool normalizeHeaderNames)
+        public static CsvTable ParseTable(StreamReader stream, CsvParserOptions options)
+        {
+            return new CsvParser(options).InternalParse(stream);
+        }
+
+        public static CsvTable ParseTable(byte[] data)
+        {
+            return new CsvParser(new CsvParserOptions()).InternalParse(new StreamReader(new MemoryStream(data)));
+        }
+
+        public static CsvTable ParseTable(byte[] data, CsvParserOptions options)
+        {
+            return new CsvParser(options).InternalParse(new StreamReader(new MemoryStream(data)));
+        }
+
+        private CsvTable InternalParse(StreamReader stream)
         {
             _table = new CsvTable();
-            _reader = new StreamReader(new MemoryStream(data));
+            _reader = stream;
             string[] row = null;
 
-            ReadHeaders(normalizeHeaderNames);
+            ReadHeaders();
 
             while(true) {
                 row = GetLineValues();
@@ -39,14 +56,14 @@ namespace CsvTools
             return _table;
         }
 
-        private void ReadHeaders(bool normalizeHeaderNames)
+        private void ReadHeaders()
         {
             string[] line = GetLineValues();
 
             int hIndex = 0;
             foreach (var name in line) {
                 string columnName = name;
-                if (normalizeHeaderNames) {
+                if (_options.NormalizeHeaderNames) {
                     columnName = new string(name.ToLower()
                         .Where(c => char.IsLetterOrDigit(c)).ToArray());
                 }
