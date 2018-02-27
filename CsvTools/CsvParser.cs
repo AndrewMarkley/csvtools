@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace CsvTools
 {
@@ -39,26 +41,27 @@ namespace CsvTools
         {
             _table = new CsvTable();
             _reader = stream;
-            string[] row = null;
+            List<string> unAlteredRows = new List<string>();
 
-            ReadHeaders();
-
-            while(true) {
-                row = GetLineValues();
-
-                if (row == null) {
-                    break;
-                }
-
-                _table.AddRow(row);
+            if (!_options.SkipHeader) {
+                ReadHeaders(_reader.ReadLine());
             }
+
+            while(!_reader.EndOfStream) {
+                unAlteredRows.Add(_reader.ReadLine());
+            }
+
+            Parallel.ForEach(unAlteredRows, t =>
+            {
+                _table.AddRow(GetLineValues(t));
+            });
 
             return _table;
         }
 
-        private void ReadHeaders()
+        private void ReadHeaders(string data)
         {
-            string[] line = GetLineValues();
+            string[] line = GetLineValues(data);
 
             int hIndex = 0;
             foreach (var name in line) {
@@ -72,10 +75,9 @@ namespace CsvTools
             }
         }
 
-        private string[] GetLineValues()
+        private string[] GetLineValues(string line)
         {
             string[] result;
-            string line = _reader.ReadLine();
 
             if (line == null) {
                 return null;

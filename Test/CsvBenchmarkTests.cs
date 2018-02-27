@@ -8,7 +8,7 @@ namespace Test
 {
     public class CsvBenchmarkTests
     {
-        public string benchmarkCsvPath = "D://Downloads//QCLCD201503//201503precip.txt";
+        public string benchmarkCsvPath = "D://Downloads//QCLCD201503//201503hourly.txt";
         private ITestOutputHelper _outputHelper;
 
         public CsvBenchmarkTests(ITestOutputHelper outputHelper)
